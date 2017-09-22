@@ -19,7 +19,7 @@ public class Validate {
         if(user == null) {
             return false;
         }
-        if(user.passwordCheck(password) == false) {
+        if(user.passwordCheck(password)) {
             return true;
         }
         
