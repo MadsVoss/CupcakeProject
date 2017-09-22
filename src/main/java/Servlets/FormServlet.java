@@ -9,6 +9,7 @@ import Database.DataMapper;
 import JavaCode.Validate;
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -71,8 +72,11 @@ public class FormServlet extends HttpServlet {
                     DataMapper dataMapper = new DataMapper();
                     HttpSession session = request.getSession();
                     session.setAttribute("user", dataMapper.getUser(username));
-                    //request.setAttribute(BottomList, );
-                    response.sendRedirect("shop.jsp");
+                    session.setAttribute("BottomList", dataMapper.getBottoms());
+                    session.setAttribute("ToppingList", dataMapper.getToppings());
+                    RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("shop.jsp");
+                    dispatcher.forward(request,response);
+                    //response.sendRedirect("shop.jsp");
                 } else {
                     response.sendRedirect("login.jsp");
                 }
