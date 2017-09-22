@@ -43,9 +43,5 @@ public class Cupcake {
     public float getTotalPrice() {
         return toppingPrice + bottomPrice;
     }
-    
-    
-    
-    
 }
 
