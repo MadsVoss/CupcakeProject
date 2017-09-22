@@ -9,6 +9,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -57,16 +59,60 @@ public class DataMapper {
             ex.printStackTrace();
         }
     }
+    
+    public List<Topping> getToppings()
+    {
+        List<Topping> toppingsList = new ArrayList();
+        Statement stm;
+        try {
+            stm = conn.getConnection().createStatement();
+            String sql = "SELECT Topping_name, Topping_price FROM Topping;";
+            ResultSet rs = stm.executeQuery(sql);
+            while (rs.next()) {
+                toppingsList.add(new Topping(rs.getString("Topping_name"), rs.getFloat("Topping_price")));
+            }
+            return toppingsList;
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return null;
+    }
+    
+    public List<Bottom> getBottoms()
+    {
+        List<Bottom> bottomsList = new ArrayList();
+        Statement stm;
+        try {
+            stm = conn.getConnection().createStatement();
+            String sql = "SELECT Bottom_name, Bottom_price FROM Bottom;";
+            ResultSet rs = stm.executeQuery(sql);
+            while (rs.next()) {
+                bottomsList.add(new Bottom(rs.getString("Bottom_name"), rs.getFloat("Bottom_price")));
+            }
+            return bottomsList;
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return null;
+    }
 
     public static void main(String[] args) {
         DataMapper dataMapper = new DataMapper();
-        User user;
+        /*User user;
         user = dataMapper.getUser("Mads");
         System.out.println(user.getBalance());
         //dataMapper.addUser("Ronnie", "Wizard", "RonnieDungeonKeeper@Wizard.net");
         User user1;
         user1 = dataMapper.getUser("Ronnie");
-        System.out.println(user1.getUsername());
+        System.out.println(user1.getUsername());*/
+        
+         /*List<Bottom> bottomsList = dataMapper.getBottoms();
+         for(int i = 0; i < bottomsList.size(); i++)
+             System.out.println(bottomsList.get(i).getName());
+         
+         List<Topping> toppingsList = dataMapper.getToppings();
+         for(int i = 0; i < toppingsList.size(); i++)
+             System.out.println(toppingsList.get(i).getName());*/
 
     }
 }

@@ -71,6 +71,7 @@ public class FormServlet extends HttpServlet {
                     DataMapper dataMapper = new DataMapper();
                     HttpSession session = request.getSession();
                     session.setAttribute("user", dataMapper.getUser(username));
+                    //request.setAttribute(BottomList, );
                     response.sendRedirect("shop.jsp");
                 } else {
                     response.sendRedirect("login.jsp");
