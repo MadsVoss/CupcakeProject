@@ -48,20 +48,22 @@
             <thead>
                 <%for(int i = 0; i < lineItems.size(); i++){%>
                 <tr>
-                    <th><%=lineItems.get(i).getCupcake().getName()%></th>
-                    <th><%=lineItems.get(i).getQty()%></th>
-                    <th><%=lineItems.get(i).getCupcake().getTotalPrice() * lineItems.get(i).getQty()%></th>
-                    <th><a href="ProductControlServlet?index=<%=i%>">Remove</a></th>
+                    <th>Name</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                    <th>Remove</th>
                 </tr>
                 <%}%>
             </thead>
             <tbody>
+                <%for(int i = 0; i < lineItems.size(); i++){%>
                 <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td><a href="">Remove</a></td>
+                    <td><%=lineItems.get(i).getCupcake().getName()%></td>
+                    <td><%=lineItems.get(i).getQty()%></td>
+                    <td><%=lineItems.get(i).getCupcake().getTotalPrice() * lineItems.get(i).getQty()%></td>
+                    <td><a href="ProductControlServlet?index=<%=i%>">Remove</a><a href="">Remove</a></td>
                 </tr>
+                <%}%>
             </tbody>
         </table>
     </body>
