@@ -67,27 +67,33 @@ public class ProductControlServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
+
         HttpSession session = request.getSession();
         ShoppingCart shoppingCart;
-        
-        if(session.getAttribute("ShoppingCart") == null)
-        {
+        if (session.getAttribute("ShoppingCart") == null) {
             shoppingCart = new ShoppingCart();
+        } else {
+            shoppingCart = (ShoppingCart) session.getAttribute("ShoppingCart");
         }
-        else 
-        {
-            shoppingCart = (ShoppingCart)session.getAttribute("ShoppingCart");
+
+        switch (request.getParameter("submit")) {
+            case "Checkout":
+                response.sendRedirect("confirmation.jsp");
+                break;
+
+            case "Add Cupcake":
+                int bottomIndexInt = Integer.parseInt(request.getParameter("Bottom"));
+                int toppingIndexInt = Integer.parseInt(request.getParameter("Topping"));
+                List<Bottom> bottomList = (List<Bottom>) session.getAttribute("BottomList");
+                List<Topping> toppingList = (List<Topping>) session.getAttribute("ToppingList");
+                Cupcake cupcake = new Cupcake(bottomList.get(bottomIndexInt), toppingList.get(toppingIndexInt));
+                LineItems lineItem = new LineItems(cupcake, Integer.parseInt(request.getParameter("qty")));
+                shoppingCart.addLineItem(lineItem);
+                session.setAttribute("ShoppingCart", shoppingCart);
+                response.sendRedirect("shop.jsp");
+                break;
         }
-        
-        int bottomIndexInt = Integer.parseInt(request.getParameter("Bottom"));
-        int toppingIndexInt = Integer.parseInt(request.getParameter("Topping"));
-        List<Bottom> bottomList = (List<Bottom>)session.getAttribute("BottomList");
-        List<Topping> toppingList = (List<Topping>)session.getAttribute("ToppingList");
-        Cupcake cupcake = new Cupcake(bottomList.get(bottomIndexInt), toppingList.get(toppingIndexInt));
-        LineItems lineItem = new LineItems(cupcake, Integer.parseInt(request.getParameter("qty")));
-        shoppingCart.addLineItem(lineItem);
-        session.setAttribute("ShoppingCart", shoppingCart);
-        response.sendRedirect("shop.jsp");
+
     }
 
     /**

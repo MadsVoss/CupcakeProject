@@ -14,12 +14,16 @@
     List<Bottom> bottomList = (List<Bottom>) session.getAttribute("BottomList");
     List<Topping> toppingList = (List<Topping>) session.getAttribute("ToppingList");
     List<LineItems> lineItems;
+    float totalPrice = 0;
     if(session.getAttribute("ShoppingCart") != null){
         ShoppingCart shoppingCart = (ShoppingCart)session.getAttribute("ShoppingCart");
         lineItems = shoppingCart.getLineItems();
+        totalPrice = shoppingCart.getTotalPrice();
     }
-    else
+    else{
     lineItems = new ArrayList();
+    
+    }
 %>
 <!DOCTYPE html>
 <html>
@@ -46,14 +50,14 @@
             
         <table class="fixed_headers">
             <thead>
-                <%for(int i = 0; i < lineItems.size(); i++){%>
+                
                 <tr>
                     <th>Name</th>
                     <th>Quantity</th>
                     <th>Price</th>
                     <th>Remove</th>
                 </tr>
-                <%}%>
+                
             </thead>
             <tbody>
                 <%for(int i = 0; i < lineItems.size(); i++){%>
@@ -61,10 +65,16 @@
                     <td><%=lineItems.get(i).getCupcake().getName()%></td>
                     <td><%=lineItems.get(i).getQty()%></td>
                     <td><%=lineItems.get(i).getCupcake().getTotalPrice() * lineItems.get(i).getQty()%></td>
-                    <td><a href="ProductControlServlet?index=<%=i%>">Remove</a><a href="">Remove</a></td>
+                    <td><a href="ProductControlServlet?index=<%=i%>">Remove</a></td>
                 </tr>
                 <%}%>
             </tbody>
         </table>
+            <p>Total price: <%=totalPrice%></p>
+            <form action="ProductControlServlet" method="POST">
+                <input type="submit" value="Checkout" name="submit" />
+                
+            </form>
+            
     </body>
 </html>

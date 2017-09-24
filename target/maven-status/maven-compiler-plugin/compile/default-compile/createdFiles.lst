@@ -1,5 +1,5 @@
-Database\DataMapper.class
 Database\User.class
 Database\Bottom.class
+Database\DataMapper.class
 Database\DBC.class
 Database\Topping.class
