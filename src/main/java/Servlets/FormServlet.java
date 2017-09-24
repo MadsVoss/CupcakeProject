@@ -99,7 +99,7 @@ public class FormServlet extends HttpServlet {
                 }
                 break;
                 
-            case "Add Cupcake":
+            /*case "Add Cupcake":
                 List<Cupcake> cupcakeCart;
                 if(session.getAttribute("CupcakeCart") == null)
                 {
@@ -117,7 +117,7 @@ public class FormServlet extends HttpServlet {
                 cupcakeCart.add(cupcake);
                 session.setAttribute("CupcakeCart", cupcakeCart);
                 response.sendRedirect("shop.jsp");
-                break;
+                break;*/
                 
             default:
         }

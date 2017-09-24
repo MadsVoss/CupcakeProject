@@ -13,5 +13,17 @@ public class ShoppingCart
     
     public void addLineItem(LineItems lineItem){
         lineItems.add(lineItem);
+        if(lineItems.contains(lineItem))
+        {
+            for(int i = 0; i < lineItems.size(); i++)
+            {
+                if(lineItems.get(i).equals(lineItem))
+                {
+                    lineItems.get(i).addQty(lineItem.getQty());
+                }
+            }
+        }
     }
+    
+    
 }

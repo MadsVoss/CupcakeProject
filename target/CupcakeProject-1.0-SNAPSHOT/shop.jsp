@@ -19,7 +19,7 @@
     </head>
     <body>
         <h1>Shop</h1>
-        <form action="FormServlet" method="POST">
+        <form action="ProductControlServlet" method="POST">
             <select name="Topping">
                 <%for(int i = 0; i < toppingList.size(); i++){%>
                 <option value="<%=i%>"><%=toppingList.get(i).getName()%></option>

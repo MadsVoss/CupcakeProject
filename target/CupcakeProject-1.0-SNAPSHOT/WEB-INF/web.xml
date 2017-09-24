@@ -8,6 +8,10 @@
         <servlet-name>FormServlet</servlet-name>
         <servlet-class>Servlets.FormServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ProductControlServlet</servlet-name>
+        <servlet-class>Servlets.ProductControlServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Servlets</servlet-name>
         <url-pattern>/Servlets</url-pattern>
@@ -15,6 +19,10 @@
     <servlet-mapping>
         <servlet-name>FormServlet</servlet-name>
         <url-pattern>/FormServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ProductControlServlet</servlet-name>
+        <url-pattern>/ProductControlServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

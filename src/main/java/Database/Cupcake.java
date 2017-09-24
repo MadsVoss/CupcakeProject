@@ -5,6 +5,8 @@
  */
 package Database;
 
+import java.util.Objects;
+
 /**
  *
  * @author Mads Voss
@@ -14,15 +16,13 @@ public class Cupcake {
     private String bottomName;
     private float toppingPrice;
     private float bottomPrice;
-    private int qty;
     
     
-    public Cupcake(Bottom bottom, Topping topping, int qty) {
+    public Cupcake(Bottom bottom, Topping topping) {
         this.toppingName = topping.getName();
         this.bottomName = bottom.getName();
         this.toppingPrice = topping.getPrice();
         this.bottomPrice = bottom.getPrice();
-        this.qty = qty;
     }
 
     public String getToppingName() {
@@ -41,16 +41,15 @@ public class Cupcake {
         return bottomPrice;
     }
     
-    public float getCupcakePrice(){
+    public float getTotalPrice(){
         return toppingPrice + bottomPrice;
     }
 
-    public float getTotalPrice() {
-        return (toppingPrice + bottomPrice) * qty;
-    }
-    
-    public int getQty() {
-        return qty;
+    public boolean equals(Cupcake obj) {
+        if(bottomName.equals(obj.getBottomName()) && toppingName.equals(obj.toppingName))
+            return  true;
+        else
+            return false;
     }
 }
 
