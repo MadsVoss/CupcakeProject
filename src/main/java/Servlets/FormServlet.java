@@ -116,6 +116,7 @@ public class FormServlet extends HttpServlet {
                 Cupcake cupcake = new Cupcake(bottomList.get(bottomIndexInt), toppingList.get(toppingIndexInt));
                 cupcakeCart.add(cupcake);
                 session.setAttribute("CupcakeCart", cupcakeCart);
+                response.sendRedirect("shop.jsp");
                 break;
                 
             default:
