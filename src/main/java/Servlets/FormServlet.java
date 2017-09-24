@@ -5,10 +5,13 @@
  */
 package Servlets;
 
+import Database.Cupcake;
 import Database.DataMapper;
 import JavaCode.Validate;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -63,6 +66,7 @@ public class FormServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
+        HttpSession session = request.getSession();
         switch (request.getParameter("submit")) {
             case "Login":
                 Validate validate = new Validate();
@@ -70,7 +74,7 @@ public class FormServlet extends HttpServlet {
                 String password = request.getParameter("password");
                 if (validate.ValidateLogin(username, password)) {
                     DataMapper dataMapper = new DataMapper();
-                    HttpSession session = request.getSession();
+                    
                     session.setAttribute("user", dataMapper.getUser(username));
                     session.setAttribute("BottomList", dataMapper.getBottoms());
                     session.setAttribute("ToppingList", dataMapper.getToppings());
@@ -91,6 +95,11 @@ public class FormServlet extends HttpServlet {
                 } else {
                 response.sendRedirect("registration.jsp");
                 }
+                break;
+                
+            case "Add Cupcake":
+                List<Cupcake> cupcakeCart = new ArrayList<>();
+                session.getAttribute("");
                 break;
                 
             default:
