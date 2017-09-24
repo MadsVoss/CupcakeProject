@@ -30,7 +30,7 @@
                 <option value="<%=bottomList.get(i).getName()%>"><%=bottomList.get(i).getName()%></option>
                 <%}%>
             </select>
-            <input type="input" name="qty" required/>
+            <input type="input" name="qty" placeholder="Quantity" required/>
             <input type="submit" name="submit" value="Add Cupcake"/>
         </form>
     </body>

@@ -81,6 +81,16 @@ public class FormServlet extends HttpServlet {
                 break;
                 
             case "Register":
+                DataMapper dataMapper = new DataMapper();
+                username = request.getParameter("username");
+                password = request.getParameter("password");
+                String email = request.getParameter("email");
+                if(dataMapper.getUser(username) == null){
+                dataMapper.addUser(username, password, email);
+                response.sendRedirect("login.jsp");
+                } else {
+                response.sendRedirect("registration.jsp");
+                }
                 break;
                 
             default:

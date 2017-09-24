@@ -98,21 +98,9 @@ public class DataMapper {
 
     public static void main(String[] args) {
         DataMapper dataMapper = new DataMapper();
-        /*User user;
-        user = dataMapper.getUser("Mads");
-        System.out.println(user.getBalance());
-        //dataMapper.addUser("Ronnie", "Wizard", "RonnieDungeonKeeper@Wizard.net");
-        User user1;
-        user1 = dataMapper.getUser("Ronnie");
-        System.out.println(user1.getUsername());*/
-        
-         /*List<Bottom> bottomsList = dataMapper.getBottoms();
-         for(int i = 0; i < bottomsList.size(); i++)
-             System.out.println(bottomsList.get(i).getName());
-         
-         List<Topping> toppingsList = dataMapper.getToppings();
-         for(int i = 0; i < toppingsList.size(); i++)
-             System.out.println(toppingsList.get(i).getName());*/
+         if(dataMapper.getUser("aoiwdiawhd")==null){
+             System.out.println("False");
+         } 
 
     }
 }
