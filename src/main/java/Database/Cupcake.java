@@ -32,6 +32,10 @@ public class Cupcake {
     public String getBottomName() {
         return bottomName;
     }
+    
+    public String getName(){
+        return toppingName + " " + bottomName;
+    }
 
     public float getToppingPrice() {
         return toppingPrice;
