@@ -16,12 +16,11 @@ public class Cupcake {
     private float bottomPrice;
     
     
-    public Cupcake(String toppingName, String bottomName, float toppingPrice, float bottomPrice) {
-        this.toppingName = toppingName;
-        this.bottomName = bottomName;
-        this.toppingPrice = toppingPrice;
-        this.bottomPrice = bottomPrice;
-        
+    public Cupcake(Bottom bottom, Topping topping) {
+        this.toppingName = topping.getName();
+        this.bottomName = bottom.getName();
+        this.toppingPrice = topping.getPrice();
+        this.bottomPrice = bottom.getPrice();
     }
 
     public String getToppingName() {

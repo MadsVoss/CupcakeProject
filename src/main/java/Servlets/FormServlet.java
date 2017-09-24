@@ -5,8 +5,10 @@
  */
 package Servlets;
 
+import Database.Bottom;
 import Database.Cupcake;
 import Database.DataMapper;
+import Database.Topping;
 import JavaCode.Validate;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -98,8 +100,22 @@ public class FormServlet extends HttpServlet {
                 break;
                 
             case "Add Cupcake":
-                List<Cupcake> cupcakeCart = new ArrayList<>();
-                session.getAttribute("");
+                List<Cupcake> cupcakeCart;
+                if(session.getAttribute("CupcakeCart") == null)
+                {
+                    cupcakeCart = new ArrayList<>();
+                }
+                else 
+                {
+                    cupcakeCart = (List<Cupcake>)session.getAttribute("CupcakeCart");
+                }
+                int bottomIndexInt = Integer.parseInt(request.getParameter("Bottom"));
+                int toppingIndexInt = Integer.parseInt(request.getParameter("Topping"));
+                List<Bottom> bottomList = (List<Bottom>)session.getAttribute("BottomList");
+                List<Topping> toppingList = (List<Topping>)session.getAttribute("ToppingList");
+                Cupcake cupcake = new Cupcake(bottomList.get(bottomIndexInt), toppingList.get(toppingIndexInt));
+                cupcakeCart.add(cupcake);
+                session.setAttribute("CupcakeCart", cupcakeCart);
                 break;
                 
             default:

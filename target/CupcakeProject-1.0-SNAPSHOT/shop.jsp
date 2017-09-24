@@ -22,12 +22,12 @@
         <form action="FormServlet" method="POST">
             <select name="Topping">
                 <%for(int i = 0; i < toppingList.size(); i++){%>
-                <option value="<%=toppingList.get(i).getName()%>"><%=toppingList.get(i).getName()%></option>
+                <option value="<%=i%>"><%=toppingList.get(i).getName()%></option>
                 <%}%>
             </select>
             <select name="Bottom">
                 <%for(int i = 0; i < bottomList.size(); i++){%>
-                <option value="<%=bottomList.get(i).getName()%>"><%=bottomList.get(i).getName()%></option>
+                <option value="<%=i%>"><%=bottomList.get(i).getName()%></option>
                 <%}%>
             </select>
             <input type="input" name="qty" placeholder="Quantity" required/>
