@@ -113,7 +113,7 @@ public class FormServlet extends HttpServlet {
                 int toppingIndexInt = Integer.parseInt(request.getParameter("Topping"));
                 List<Bottom> bottomList = (List<Bottom>)session.getAttribute("BottomList");
                 List<Topping> toppingList = (List<Topping>)session.getAttribute("ToppingList");
-                Cupcake cupcake = new Cupcake(bottomList.get(bottomIndexInt), toppingList.get(toppingIndexInt));
+                Cupcake cupcake = new Cupcake(bottomList.get(bottomIndexInt), toppingList.get(toppingIndexInt), Integer.parseInt(request.getParameter("qty")));
                 cupcakeCart.add(cupcake);
                 session.setAttribute("CupcakeCart", cupcakeCart);
                 response.sendRedirect("shop.jsp");

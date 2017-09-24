@@ -14,13 +14,15 @@ public class Cupcake {
     private String bottomName;
     private float toppingPrice;
     private float bottomPrice;
+    private int qty;
     
     
-    public Cupcake(Bottom bottom, Topping topping) {
+    public Cupcake(Bottom bottom, Topping topping, int qty) {
         this.toppingName = topping.getName();
         this.bottomName = bottom.getName();
         this.toppingPrice = topping.getPrice();
         this.bottomPrice = bottom.getPrice();
+        this.qty = qty;
     }
 
     public String getToppingName() {
@@ -38,9 +40,17 @@ public class Cupcake {
     public float getBottomPrice() {
         return bottomPrice;
     }
+    
+    public float getCupcakePrice(){
+        return toppingPrice + bottomPrice;
+    }
 
     public float getTotalPrice() {
-        return toppingPrice + bottomPrice;
+        return (toppingPrice + bottomPrice) * qty;
+    }
+    
+    public int getQty() {
+        return qty;
     }
 }
 
