@@ -3,7 +3,8 @@
     Created on : 21-09-2017, 10:47:34
     Author     : Mads Voss
 --%>
-<%@page import="Database.DataMapper"%>
+
+<%//virker ikke, burde sende brugeren tilbage til login, hvis man ikke er logget ind //if(session.getAttribute("user") == null){response.sendRedirect("login.jsp");}%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="JavaCode.LineItems"%>
 <%@page import="JavaCode.ShoppingCart"%>
@@ -12,9 +13,8 @@
 <%@page import="Database.Bottom"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
-    DataMapper dataMapper = new DataMapper();
-    List<Bottom> bottomList = dataMapper.getBottoms();
-    List<Topping> toppingList = dataMapper.getToppings();
+    List<Bottom> bottomList = (List<Bottom>) session.getAttribute("BottomList");
+    List<Topping> toppingList = (List<Topping>) session.getAttribute("ToppingList");
     List<LineItems> lineItems;
     float totalPrice = 0;
     if(session.getAttribute("ShoppingCart") != null){
@@ -23,7 +23,8 @@
         totalPrice = shoppingCart.getTotalPrice();
     }
     else{
-        lineItems = new ArrayList();
+    lineItems = new ArrayList();
+    
     }
 %>
 <!DOCTYPE html>
