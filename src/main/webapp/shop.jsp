@@ -3,8 +3,7 @@
     Created on : 21-09-2017, 10:47:34
     Author     : Mads Voss
 --%>
-
-<%//virker ikke, burde sende brugeren tilbage til login, hvis man ikke er logget ind //if(session.getAttribute("user") == null){response.sendRedirect("login.jsp");}%>
+<%@page import="Database.DataMapper"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="JavaCode.LineItems"%>
 <%@page import="JavaCode.ShoppingCart"%>
@@ -16,6 +15,7 @@
     List<Bottom> bottomList = (List<Bottom>) session.getAttribute("BottomList");
     List<Topping> toppingList = (List<Topping>) session.getAttribute("ToppingList");
     List<LineItems> lineItems;
+    
     float totalPrice = 0;
     if(session.getAttribute("ShoppingCart") != null){
         ShoppingCart shoppingCart = (ShoppingCart)session.getAttribute("ShoppingCart");
@@ -26,6 +26,7 @@
     lineItems = new ArrayList();
     
     }
+    
 %>
 <!DOCTYPE html>
 <html>

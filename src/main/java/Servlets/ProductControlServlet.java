@@ -7,7 +7,9 @@ package Servlets;
 
 import Database.Bottom;
 import Database.Cupcake;
+import Database.DataMapper;
 import Database.Topping;
+import Database.User;
 import JavaCode.LineItems;
 import JavaCode.ShoppingCart;
 import java.io.IOException;
@@ -70,6 +72,8 @@ public class ProductControlServlet extends HttpServlet {
 
         HttpSession session = request.getSession();
         ShoppingCart shoppingCart;
+        DataMapper dataMapper = new DataMapper();
+        User user = (User)session.getAttribute("user");
         if (session.getAttribute("ShoppingCart") == null) {
             shoppingCart = new ShoppingCart();
         } else {
@@ -78,10 +82,21 @@ public class ProductControlServlet extends HttpServlet {
 
         switch (request.getParameter("submit")) {
             case "Checkout":
+                if(user.getBalance() < shoppingCart.getTotalPrice()){
+                    dataMapper.deleteInvoicedProducts((int)session.getAttribute("Invoice_id"));
+                    shoppingCart.emptyCart();
+                    session.removeAttribute("ShoppingCart");
+                    session.setAttribute("ShoppingCart", shoppingCart);
+                    response.sendRedirect("shop.jsp");
+                }else {
+                dataMapper.makePurchase(user, shoppingCart.getTotalPrice());
                 response.sendRedirect("confirmation.jsp");
+                }
                 break;
 
             case "Add Cupcake":
+                
+                int Invoice_id = (int)session.getAttribute("Invoice_id");
                 int bottomIndexInt = Integer.parseInt(request.getParameter("Bottom"));
                 int toppingIndexInt = Integer.parseInt(request.getParameter("Topping"));
                 List<Bottom> bottomList = (List<Bottom>) session.getAttribute("BottomList");
@@ -90,6 +105,11 @@ public class ProductControlServlet extends HttpServlet {
                 LineItems lineItem = new LineItems(cupcake, Integer.parseInt(request.getParameter("qty")));
                 shoppingCart.addLineItem(lineItem);
                 session.setAttribute("ShoppingCart", shoppingCart);
+                dataMapper.addProduct(lineItem, Invoice_id);
+                
+                
+                
+                
                 response.sendRedirect("shop.jsp");
                 break;
         }

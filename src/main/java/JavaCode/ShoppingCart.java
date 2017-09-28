@@ -32,5 +32,8 @@ public class ShoppingCart {
         }
         return totalPrice;
     }
+    public void emptyCart(){
+        lineItems.clear();
+    }
 
 }

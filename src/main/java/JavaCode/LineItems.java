@@ -25,6 +25,9 @@ public class LineItems
     public Cupcake getCupcake() {
         return cupcake;
     }
+    public float lineItemsPrice(){
+        return qty * cupcake.getTotalPrice();
+    }
 
     public boolean equals(LineItems obj) {
         if(cupcake.equals(obj.getCupcake()))

@@ -13,10 +13,11 @@
         <link rel="stylesheet" href="CSS/main.css">
         <link rel="stylesheet" href="CSS/form.css">
     </head>
-    <body>
+    <body id="registration">        
+        <jsp:include page="includes/menu.jsp" />
+        <h1>Registration</h1>
         <div id="bg">
             <div class="module">
-                <h2>Registration</h2>
                 <form class="form" method="POST" action="FormServlet">
                     <input type="text" name="username" required  placeholder="Username" class="textbox" />
                     <input type="email" name="email" required  placeholder="Email" class="textbox" />

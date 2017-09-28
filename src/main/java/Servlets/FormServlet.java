@@ -80,6 +80,7 @@ public class FormServlet extends HttpServlet {
                     session.setAttribute("user", dataMapper.getUser(username));
                     session.setAttribute("BottomList", dataMapper.getBottoms());
                     session.setAttribute("ToppingList", dataMapper.getToppings());
+                    session.setAttribute("Invoice_id", dataMapper.checkInvoice(dataMapper.getUser(username)));
                     response.sendRedirect("shop.jsp");
                 } else {
                     response.sendRedirect("login.jsp");
