@@ -17,18 +17,12 @@
                 <li>Cupcakes</li>
             </a>
             <%}%>
-            <%if(session.getAttribute("user") == null){%>
             <a href="login.jsp">
                 <li>Login</li>
             </a>
             <a href="registration.jsp">
                 <li>Registration</li>
             </a>
-            <%}else{%>
-            <a href="">
-                <li>Log out</li>
-            </a>
-            <%}%>
         </ul>
     </nav>
 </div>

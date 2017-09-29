@@ -34,23 +34,28 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Shop</title>
+        <link rel="stylesheet" href="CSS/main.css">
+        <link rel="stylesheet" href="CSS/form.css">
     </head>
     <body>
+        <jsp:include page="includes/menu.jsp" />
         <h1>Shop</h1>
-        <form action="ProductControlServlet" method="POST">
-            <select name="Topping">
-                <%for (int i = 0; i < toppingList.size(); i++) {%>
-                <option value="<%=i%>"><%=toppingList.get(i).getName()%></option>
-                <%}%>
-            </select>
-            <select name="Bottom">
-                <%for (int i = 0; i < bottomList.size(); i++) {%>
-                <option value="<%=i%>"><%=bottomList.get(i).getName()%></option>
-                <%}%>
-            </select>
-            <input type="input" name="qty" placeholder="Quantity" required/>
-            <input type="submit" name="submit" value="Add Cupcake"/>
-        </form>
+        <div id="bg">
+            <form class="form" action="ProductControlServlet" method="POST">
+                <select name="Topping" class="textbox">
+                    <%for (int i = 0; i < toppingList.size(); i++) {%>
+                    <option value="<%=i%>"><%=toppingList.get(i).getName()%></option>
+                    <%}%>
+                </select>
+                <select name="Bottom" class="textbox">
+                    <%for (int i = 0; i < bottomList.size(); i++) {%>
+                    <option value="<%=i%>"><%=bottomList.get(i).getName()%></option>
+                    <%}%>
+                </select>
+                <input class="textbox" type="input" name="qty" placeholder="Quantity" required/>
+                <input class="textbox" type="submit" name="submit" value="Add Cupcake"/>
+            </form>
+        </div>
             
         <table class="fixed_headers">
             <thead>
