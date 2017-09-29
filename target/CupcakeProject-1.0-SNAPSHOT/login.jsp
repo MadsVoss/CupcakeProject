@@ -13,11 +13,10 @@
         <link rel="stylesheet" href="CSS/main.css">
         <link rel="stylesheet" href="CSS/form.css">
     </head>
-    <body id="login">
-        <jsp:include page="includes/menu.jsp" />
-        <h1>Login</h1>
+    <body>
         <div id="bg">
             <div class="module">
+                <h2>Login</h2>
                 <form class="form" method="POST" action="FormServlet">
                     <input type="text" name="username" required  placeholder="Username" class="textbox" />
                     <input type="password" name="password" required  placeholder="Password" class="textbox" />

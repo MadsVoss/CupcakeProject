@@ -35,6 +35,9 @@ public class LineItems
         else
             return false;
     }
+    public String string(){
+        return "Cupecake: " + cupcake.getName() +"qty: "+ qty + "Invoice_id: "+invoiceId;
+    }
     
 }
 

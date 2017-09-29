@@ -1,9 +1,15 @@
+body {
+  background-color: #f0f0f0;
+}
+
 #bg {
+  position: relative;
+  top: 20px;
   min-height: 200px;
-  width: 716px;
+  width: 800px;
   margin-left: auto;
   margin-right: auto;
-  border: #301900 2px solid;
+  border: #fff 15px solid;
 }
 
 .module {
@@ -16,12 +22,10 @@
   border-radius: 5px;
 }
 
-h1
+.module h2
 {
   text-align: center;
-  padding-bottom: 10px;
-  padding-top: 10px;
-  color: #fffdd0;
+  padding-top: 20px;
 }
 
 .form {
@@ -35,11 +39,10 @@ h1
   height: 50px;
   width: 100%;
   border-radius: 3px;
-  border: #301900 2px solid;
+  border: #ccc 2px solid;
   box-sizing: border-box;
   padding: 10px;
   margin-bottom: 30px;
-  background-color: #fffdd0;
 }
 
 .button {
@@ -50,7 +53,7 @@ h1
   box-sizing: border-box;
   padding: 10px;
   margin-bottom: 30px;
-  background: #352117;
+  background: #90c843;
   color: #FFF;
   font-weight: bold;
   font-size: 12pt;
@@ -58,5 +61,5 @@ h1
 }
 
 .button:hover {
-  background: #9a6b4b;
+  background: #80b438;
 }

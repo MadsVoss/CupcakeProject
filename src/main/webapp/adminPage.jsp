@@ -4,7 +4,15 @@
     Author     : Jonatan
 --%>
 
+<%@page import="Database.ODetails"%>
+<%@page import="java.util.List"%>
+<%@page import="Database.DataMapper"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%
+    DataMapper dataMapper = new DataMapper();
+    List<ODetails> oDetailsList = dataMapper.adminPageData();
+
+%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -12,6 +20,14 @@
         <title>JSP Page</title>
     </head>
     <body>
-        
+        <h1>AdminPage</h1>
+        <%
+            int t = 0;
+            for(int i = 0; i < oDetailsList.size(); i++){
+                
+            
+        %>
+        <p><%=oDetailsList.get(i).toString()%></p>
+        <%}%>
     </body>
 </html>

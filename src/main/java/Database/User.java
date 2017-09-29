@@ -13,13 +13,15 @@ public class User {
     private int id;
     private String username, password, email;
     private float balance;
+    private String role;
 
-    public User(int id, String username, String password, String email, float balance) {
+    public User(int id, String username, String password, String email, float balance, String role) {
         this.id = id;
         this.username = username;
         this.password = password;
         this.email = email;
         this.balance = balance;
+        this.role = role;
     }
     
     public boolean passwordCheck(String password) {
@@ -40,6 +42,10 @@ public class User {
 
     public float getBalance() {
         return balance;
+    }
+
+    public String getRole() {
+        return role;
     }
     
 }

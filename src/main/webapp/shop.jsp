@@ -3,6 +3,7 @@
     Created on : 21-09-2017, 10:47:34
     Author     : Mads Voss
 --%>
+<%@page import="Database.User"%>
 <%@page import="Database.DataMapper"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="JavaCode.LineItems"%>
@@ -78,6 +79,13 @@
                 <input type="submit" value="Checkout" name="submit" />
                 
             </form>
+            
+            <%
+                User user = (User)session.getAttribute("user");
+                if(user.getRole().equals("Admin")){
+            %>
+            <a href="adminPage.jsp">Admin page</a>
+            <%}%>
             
     </body>
 </html>

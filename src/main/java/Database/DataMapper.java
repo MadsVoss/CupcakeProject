@@ -6,6 +6,7 @@
 package Database;
 
 import JavaCode.LineItems;
+import JavaCode.ShoppingCart;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -15,6 +16,7 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -40,7 +42,7 @@ public class DataMapper {
             ResultSet rs = stm.executeQuery(sql);
             //Tries to find a user which matches the previous search, if found it gives the info about the users. Otherwise it returns null.
             if (rs.next()) {
-                User user = new User(rs.getInt("User_id"), rs.getString("User_username"), rs.getString("User_password"), rs.getString("User_email"), rs.getFloat("User_balance"));
+                User user = new User(rs.getInt("User_id"), rs.getString("User_username"), rs.getString("User_password"), rs.getString("User_email"), rs.getFloat("User_balance"), rs.getString("User_role"));
                 return user;
             }
         } catch (SQLException ex) {
@@ -74,6 +76,38 @@ public class DataMapper {
                 toppingsList.add(new Topping(rs.getString("Topping_name"), rs.getFloat("Topping_price")));
             }
             return toppingsList;
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return null;
+    }
+    private Topping getTop(String toppingString){
+        Statement stm;
+        try {
+            stm = conn.getConnection().createStatement();
+            String sql = "SELECT Topping_name, Topping_price FROM Topping WHERE Topping_name = '"+toppingString+"';";
+            ResultSet rs = stm.executeQuery(sql);
+            if (rs.next()) {
+                Topping top = new Topping(rs.getString("Topping_name"), rs.getFloat("Topping_price"));
+                return top;
+            }
+            
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return null;
+}
+     private Bottom getBot(String bottomString) {
+        Statement stm;
+        try {
+            stm = conn.getConnection().createStatement();
+            String sql = "SELECT Bottom_name, Bottom_price FROM Bottom WHERE Bottom_name = '"+bottomString+"';";
+            ResultSet rs = stm.executeQuery(sql);
+            if (rs.next()) {
+                Bottom bot = new Bottom(rs.getString("Bottom_name"), rs.getFloat("Bottom_price"));
+                return bot;
+            }
+            
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
@@ -132,12 +166,21 @@ public class DataMapper {
         return 0;
     }
 
-//    public static void main(String[] args) {
-//        DataMapper dataMapper = new DataMapper();
-//        User user = dataMapper.getUser("Jonatan");
-//        dataMapper.makePurchase(user, 20);
-//
-//    }
+    public static void main(String[] args) {
+        DataMapper dataMapper = new DataMapper();
+        ShoppingCart list = dataMapper.fillShoppingCart(11);
+        List<LineItems> lisst = list.getLineItems();
+//        for(int i = 0; i<lisst.size(); i++){
+//            System.err.println(lisst.get(i).string());
+//        }
+//        Topping top = dataMapper.getTop("Chocolate");
+//        Bottom bot = dataMapper.getBot("Chocolate");
+//        Cupcake cupcake = new Cupcake(bot, top);
+//        System.out.println(cupcake.getName());
+//        System.out.println(top.getName() + top.getPrice());
+//        System.out.println(bot.getName() + bot.getPrice());
+
+    }
     private void closeInvoice(User user){
         try {
             String sql = "update oDetails set CurrentStatus = 'Closed' where User_id = "+user.getId()+";";
@@ -160,21 +203,25 @@ public class DataMapper {
         }
     }
     
-    public List<LineItems> fillShoppingCart(User user){
-        List<LineItems> lineItems = new ArrayList();
+    public ShoppingCart fillShoppingCart(int Invoiceid){
+        ShoppingCart shoppingCart = new ShoppingCart();
         try {
             Statement stm;
             stm = conn.getConnection().createStatement();
-            String sql = "select * from Product where Invoice_id = "+user.getId()+";";
+            String sql = "select * from Product where Invoice_id = "+Invoiceid+";";
             ResultSet rs = stm.executeQuery(sql);
             while (rs.next()) {
                 String productName = rs.getString("Product_name");
                 int product_quantity = rs.getInt("Product_quantity");
-                float  product_price = rs.getFloat("Product_price");
-                int Invoice_id = rs.getInt("Invoice_id");
+                String[] name = productName.split("-");
+                Topping top = getTop(name[0]);
+                Bottom bot = getBot(name[1]);
+                Cupcake cupcake = new Cupcake(bot, top);
+                shoppingCart.addLineItem(new LineItems(cupcake, product_quantity));
                 
                 //lineItems.add(new LineItems(productName, product_quantity, product_price, Invoice_id));
             }
+            return shoppingCart;
             
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -193,6 +240,26 @@ public class DataMapper {
             ex.printStackTrace();
         }
     }
+    
+    public List<ODetails> adminPageData(){
+        List<ODetails> list = new ArrayList();
+        try {
+            Statement stm;
+            stm = conn.getConnection().createStatement();
+            String sql = "select * from oDetails;";
+            ResultSet rs = stm.executeQuery(sql);
+            while (rs.next()) {
+                
+                list.add(new ODetails(rs.getInt("Invoice_id"), rs.getInt("User_id"), rs.getString("CurrentStatus")));
+            }
+            return list;
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return null;
+    }
+
+   
 
     
 

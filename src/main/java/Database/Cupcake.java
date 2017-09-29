@@ -34,7 +34,7 @@ public class Cupcake {
     }
     
     public String getName(){
-        return toppingName + " " + bottomName;
+        return toppingName + "-" + bottomName;
     }
 
     public float getToppingPrice() {
