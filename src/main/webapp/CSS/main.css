@@ -78,9 +78,9 @@ table tr th{
 }
 
 tbody tr:nth-child(odd) {
-   background-color: #352117;
+   background-color: #9a6b4b;
 }
 
 tbody tr:nth-child(even) {
-   background-color: #9a6b4b;
+   background-color: #fffdd0;
 }
