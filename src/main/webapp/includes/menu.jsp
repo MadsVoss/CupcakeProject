@@ -9,9 +9,14 @@
 <div id="menu">
     <nav>
         <ul>
+            <a href="">
+                <img src="img/cupcake.jpg" alt="">
+            </a>
+            <%if(session.getAttribute("user") != null){%>
             <a href="shop.jsp">
                 <li>Cupcakes</li>
             </a>
+            <%}%>
             <a href="login.jsp">
                 <li>Login</li>
             </a>

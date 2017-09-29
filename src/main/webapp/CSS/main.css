@@ -15,11 +15,16 @@ body{
 	text-decoration: underline;
 }
 
+nav{
+	width: 100%;
+}
+
 nav ul{
-	width: 718px;
-	margin: 0 auto;
+	width: 100%;
 	overflow: hidden;
 	margin-bottom: 20px;
+	border: 2px solid #301900;
+	background: #9a6b4b;
 }
 
 nav ul a li{
@@ -29,18 +34,18 @@ nav ul a li{
 	float: left;
 	padding-top: 18px;
 	text-align: center;
-	border: 2px solid #301900;
+	border-right: 2px solid #301900;
 	font-size: 18px;
 }
-
+/*
 nav ul a:nth-child(3) li
 {
 	border-left: 0;
-}
+}*/
 
-nav ul a:nth-child(1) li
+nav ul a:nth-child(2) li
 {
-	border-right: 0;
+	border-left: 2px solid #301900;
 }
 
 nav ul a li:hover{
@@ -51,4 +56,9 @@ nav ul a li:hover{
 
 nav ul a{
 	color: #fffdd0;
+}
+
+nav ul a img{
+	height: 58px;
+	float: left;
 }

@@ -21,9 +21,7 @@
                 <form class="form" method="POST" action="FormServlet">
                     <input type="text" name="username" required  placeholder="Username" class="textbox" />
                     <input type="email" name="email" required  placeholder="Email" class="textbox" />
-                    <input type="email" name="email2" required  placeholder="Email Again" class="textbox" />
                     <input type="password" name="password" required placeholder="Password" class="textbox" />
-                    <input type="password" name="password2" required  placeholder="Password Again" class="textbox" />
                     <input type="submit" name="submit" value="Register" class="button" />
                 </form>
             </div>
