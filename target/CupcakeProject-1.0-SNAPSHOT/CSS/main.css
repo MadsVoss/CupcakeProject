@@ -62,3 +62,25 @@ nav ul a img{
 	height: 58px;
 	float: left;
 }
+
+table{
+	width: 720px;
+	margin: 0 auto;
+}
+
+table tr td{
+	width: 180px
+}
+
+table tr th{
+	width: 180px;
+	text-align: center;
+}
+
+tbody tr:nth-child(odd) {
+   background-color: #352117;
+}
+
+tbody tr:nth-child(even) {
+   background-color: #9a6b4b;
+}

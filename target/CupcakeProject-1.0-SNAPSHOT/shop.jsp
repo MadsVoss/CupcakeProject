@@ -74,7 +74,7 @@
                     <td><%=lineItems.get(i).getCupcake().getName()%></td>
                     <td><%=lineItems.get(i).getQty()%></td>
                     <td><%=lineItems.get(i).getCupcake().getTotalPrice() * lineItems.get(i).getQty()%></td>
-                    <td><a href="ProductControlServlet?index=<%=i%>">Remove</a></td>
+                    <td><a href="ProductControlServlet?index=<%=i%>">x</a></td>
                 </tr>
                 <%}%>
             </tbody>
