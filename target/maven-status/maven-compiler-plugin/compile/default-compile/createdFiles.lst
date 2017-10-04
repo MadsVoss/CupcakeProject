@@ -1,4 +1,5 @@
 Database\User.class
+Database\ODetails.class
 Database\Bottom.class
 Database\DataMapper.class
 Database\DBC.class

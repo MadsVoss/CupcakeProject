@@ -3,6 +3,11 @@ package JavaCode;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author Mads Voss
+ * Contains a list of LineItems.
+ */
+
 public class ShoppingCart {
 
     private List<LineItems> lineItems = new ArrayList();

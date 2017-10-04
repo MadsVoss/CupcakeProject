@@ -6,8 +6,8 @@
 package Database;
 
 /**
- *
  * @author Jonatan
+ * Contains the logged in users invoice.
  */
 public class ODetails {
     private int Invoiceid;

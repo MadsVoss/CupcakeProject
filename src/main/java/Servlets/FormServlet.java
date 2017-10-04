@@ -22,8 +22,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- *
  * @author Mads Voss
+ * Handles all the form requests.
  */
 public class FormServlet extends HttpServlet {
 

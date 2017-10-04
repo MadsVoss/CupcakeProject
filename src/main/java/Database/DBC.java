@@ -12,7 +12,7 @@ public class DBC {
 
     private Connection connection = null;
 
-    //Constants
+    
     //Sat på Jonatans database
     private static final String IP = "46.101.243.239";
     private static final String PORT = "3306";

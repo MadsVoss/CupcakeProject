@@ -3,6 +3,11 @@ package JavaCode;
 import Database.Cupcake;
 import java.util.Objects;
 
+/**
+ * @author Mads Voss
+ * Object that contains the invoice ID, the cupcake and amount of said cupcake.
+ */
+
 public class LineItems 
 {
     private int invoiceId;
