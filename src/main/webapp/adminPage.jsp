@@ -27,7 +27,7 @@
                 
             
         %>
-        <p><%=oDetailsList.get(i).toString()%></p>
+        <a href="invoiceDetails.jsp?ididid=<%=oDetailsList.get(i).getInvoiceid()%>"><%=oDetailsList.get(i).toString()%></a><br>
         <%}%>
     </body>
 </html>

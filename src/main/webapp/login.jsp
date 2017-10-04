@@ -14,6 +14,8 @@
         <link rel="stylesheet" href="CSS/form.css">
     </head>
     <body>
+        
+        
         <jsp:include page="includes/menu.jsp" />
         <h1>Login</h1>
         <div id="bg">

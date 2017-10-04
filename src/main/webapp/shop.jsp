@@ -16,8 +16,9 @@
     List<Bottom> bottomList = (List<Bottom>) session.getAttribute("BottomList");
     List<Topping> toppingList = (List<Topping>) session.getAttribute("ToppingList");
     List<LineItems> lineItems;
-    
     float totalPrice = 0;
+    User user = (User)session.getAttribute("user");
+    float balance = user.getBalance();
     if(session.getAttribute("ShoppingCart") != null){
         ShoppingCart shoppingCart = (ShoppingCart)session.getAttribute("ShoppingCart");
         lineItems = shoppingCart.getLineItems();
@@ -40,6 +41,7 @@
     <body>
         <jsp:include page="includes/menu.jsp" />
         <h1>Shop</h1>
+        <h1><%= user.getUsername()+"'s balance " + balance +" Dk"%></h1>
         <div id="bg">
             <form class="form" action="ProductControlServlet" method="POST">
                 <select name="Topping" class="textbox">
@@ -86,7 +88,7 @@
             </form>
             
             <%
-                User user = (User)session.getAttribute("user");
+                
                 if(user.getRole().equals("Admin")){
             %>
             <a href="adminPage.jsp">Admin page</a>
