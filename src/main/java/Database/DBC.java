@@ -28,7 +28,11 @@ public class DBC {
         String url = "jdbc:mysql://" + IP + ":" + PORT + "/" + DATABASE;
         this.connection = (Connection) DriverManager.getConnection(url, USERNAME, PASSWORD);
     }
-
+    /**
+     * 
+     * @return 
+     * Returns the database connection
+     */
     public Connection getConnection() {
         return this.connection;
     }

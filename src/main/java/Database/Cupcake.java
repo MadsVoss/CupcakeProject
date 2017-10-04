@@ -48,7 +48,12 @@ public class Cupcake {
     public float getTotalPrice(){
         return toppingPrice + bottomPrice;
     }
-
+    /**
+     * 
+     * @param obj
+     * @return 
+     * Compares two cupcakes.
+     */
     public boolean equals(Cupcake obj) {
         if(bottomName.equals(obj.getBottomName()) && toppingName.equals(obj.toppingName))
             return  true;

@@ -33,7 +33,12 @@ public class DataMapper {
             ex.printStackTrace();
         }
     }
-
+    /**
+     * 
+     * @param username
+     * @return 
+     * Fetches a user from the database.
+     */
     public User getUser(String username) {
         Statement stm;
         try {
@@ -50,7 +55,13 @@ public class DataMapper {
         }
         return null;
     }
-
+    /**
+     * 
+     * @param username
+     * @param password
+     * @param email 
+     * Adds a user to the database.
+     */
     public void addUser(String username, String password, String email) {
         try {
             String sql = "insert into User set User_username = ?, User_password = ?, User_email = ?";
@@ -63,7 +74,11 @@ public class DataMapper {
             ex.printStackTrace();
         }
     }
-    
+    /**
+     * 
+     * @return 
+     * Returns a list of toppings from the database.
+     */
     public List<Topping> getToppings()
     {
         List<Topping> toppingsList = new ArrayList();
@@ -81,6 +96,12 @@ public class DataMapper {
         }
         return null;
     }
+    /**
+     * 
+     * @param toppingString
+     * @return 
+     * Returns a single topping from the database.
+     */
     private Topping getTop(String toppingString){
         Statement stm;
         try {
@@ -97,6 +118,13 @@ public class DataMapper {
         }
         return null;
 }
+    
+    /**
+     * 
+     * @param bottomString
+     * @return 
+     * Returns a single bottom from the database.
+     */
      private Bottom getBot(String bottomString) {
         Statement stm;
         try {
@@ -113,7 +141,11 @@ public class DataMapper {
         }
         return null;
     }
-    
+    /**
+     * 
+     * @return 
+     * Returns a list of bottoms from the database.
+     */
     public List<Bottom> getBottoms()
     {
         List<Bottom> bottomsList = new ArrayList();
@@ -131,6 +163,13 @@ public class DataMapper {
         }
         return null;
     }
+    
+    /**
+     * 
+     * @param lineItems
+     * @param Invoice_id 
+     * Adds product to the database.
+     */
     public void addProduct(LineItems lineItems, int Invoice_id) {
         
         try {
@@ -140,8 +179,14 @@ public class DataMapper {
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-    }
     
+    }
+    /**
+     * If there is an open invoice the customer gets it otherwise it will create a new one.
+     * @param user
+     * @return 
+     * 
+     */
     public int checkInvoice(User user){
         Statement stm;
         
@@ -165,22 +210,19 @@ public class DataMapper {
         }
         return 0;
     }
-
+    
+    
     public static void main(String[] args) {
         DataMapper dataMapper = new DataMapper();
         ShoppingCart list = dataMapper.fillShoppingCart(11);
         List<LineItems> lisst = list.getLineItems();
-//        for(int i = 0; i<lisst.size(); i++){
-//            System.err.println(lisst.get(i).string());
-//        }
-//        Topping top = dataMapper.getTop("Chocolate");
-//        Bottom bot = dataMapper.getBot("Chocolate");
-//        Cupcake cupcake = new Cupcake(bot, top);
-//        System.out.println(cupcake.getName());
-//        System.out.println(top.getName() + top.getPrice());
-//        System.out.println(bot.getName() + bot.getPrice());
 
     }
+    
+    /**
+     * Closes the invoice for the current user.
+     * @param user 
+     */
     private void closeInvoice(User user){
         try {
             String sql = "update oDetails set CurrentStatus = 'Closed' where User_id = "+user.getId()+";";
@@ -190,7 +232,12 @@ public class DataMapper {
             ex.printStackTrace();
         }
     }
-
+    
+    /**
+     * Updates the balance after a purchase.
+     * @param user
+     * @param totalPrice 
+     */
     public void makePurchase(User user, float totalPrice) {
         try {
             float newBalance = user.getBalance() - totalPrice;
@@ -202,7 +249,13 @@ public class DataMapper {
             ex.printStackTrace();
         }
     }
-    
+   
+    /**
+     * 
+     * @param Invoiceid
+     * @return 
+     * Returns a shoppingcart object with all the cupcakes that were in the session when the user logged out.
+     */
     public ShoppingCart fillShoppingCart(int Invoiceid){
         ShoppingCart shoppingCart = new ShoppingCart();
         try {
