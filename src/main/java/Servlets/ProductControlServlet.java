@@ -94,15 +94,21 @@ public class ProductControlServlet extends HttpServlet {
         
         switch (request.getParameter("submit")) {
             case "Checkout":
-                if(user.getBalance() < shoppingCart.getTotalPrice()){
+                if(user.getBalance() < shoppingCart.getTotalPrice() || shoppingCart.getTotalPrice() <= 0){
                     dataMapper.deleteInvoicedProducts((int)session.getAttribute("Invoice_id"));
                     shoppingCart.emptyCart();
                     session.removeAttribute("ShoppingCart");
                     session.setAttribute("ShoppingCart", shoppingCart);
                     response.sendRedirect("shop.jsp");
                 }else {
+                int checkOutInvoice = (int)session.getAttribute("Invoice_id");
                 dataMapper.makePurchase(user, shoppingCart.getTotalPrice());
-                response.sendRedirect("confirmation.jsp");
+                shoppingCart.emptyCart();
+                    session.removeAttribute("ShoppingCart");
+                    session.setAttribute("ShoppingCart", shoppingCart);
+                session.removeAttribute("Invoice_id");
+                session.setAttribute("Invoice_id", dataMapper.checkInvoice(dataMapper.getUser(user.getUsername())));
+                response.sendRedirect("confirmation.jsp?checkOutInvoice="+checkOutInvoice);
                 }
                 break;
                 
