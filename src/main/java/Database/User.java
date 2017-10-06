@@ -6,8 +6,8 @@
 package Database;
 
 /**
- * @author Mads Voss
  * Contains all the user information from the database.
+ * @author Mads Voss
  */
 public class User {
     private int id;

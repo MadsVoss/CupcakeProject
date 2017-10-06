@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author Mads Voss
  * Contains a list of LineItems.
+ * @author Mads Voss
  */
 
 public class ShoppingCart {
@@ -16,6 +16,10 @@ public class ShoppingCart {
         return lineItems;
     }
 
+    /**
+     * 
+     * @param lineItem 
+     */
     public void addLineItem(LineItems lineItem) {
         boolean found = false;
 

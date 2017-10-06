@@ -4,8 +4,8 @@ import Database.Cupcake;
 import java.util.Objects;
 
 /**
- * @author Mads Voss
  * Object that contains the invoice ID, the cupcake and amount of said cupcake.
+ * @author Mads Voss
  */
 
 public class LineItems 

@@ -281,6 +281,11 @@ public class DataMapper {
         }
         return null;
     }
+    
+    /**
+     * Deletes a product from the invoice.
+     * @param Invoice_id 
+     */
     public void deleteInvoicedProducts(int Invoice_id){
         try {
             String sql = "delete from Product where Invoice_id = "+Invoice_id+";";
@@ -292,7 +297,11 @@ public class DataMapper {
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-    }
+        
+    }/**
+     * Returns a list of the order details.
+     * @return 
+     */
     
     public List<ODetails> adminPageData(){
         List<ODetails> list = new ArrayList();

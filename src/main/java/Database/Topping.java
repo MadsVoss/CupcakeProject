@@ -6,8 +6,8 @@
 package Database;
 
 /**
- * @author Jonatan
  * Contains a list of the Toppings table from the database.
+ * @author Jonatan
  */
 public class Topping {
     private String name;

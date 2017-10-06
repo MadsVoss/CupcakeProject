@@ -8,8 +8,8 @@ package Database;
 import java.util.Objects;
 
 /**
- * @author Mads Voss
  * Class that combines the bottom and topping to a cupcake. When combined shows you the names and price.
+ * @author Mads Voss
  */
 public class Cupcake {
     private String toppingName;

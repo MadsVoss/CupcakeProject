@@ -6,8 +6,8 @@
 package Database;
 
 /**
- * @author Mads Voss
  * Contains a list of the Bottoms table from the database.
+ * @author Mads Voss
  */
 public class Bottom {
     private String name;
