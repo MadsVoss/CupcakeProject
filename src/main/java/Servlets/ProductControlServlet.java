@@ -55,6 +55,17 @@ public class ProductControlServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
+        HttpSession session = request.getSession();
+        DataMapper dataMapper = new DataMapper();
+        if(request.getParameter("index") != null)
+        {
+            int index =  Integer.parseInt(request.getParameter("index"));
+            ShoppingCart shoppingCart = (ShoppingCart)session.getAttribute("ShoppingCart");
+            dataMapper.removeProduct(shoppingCart.getLineItem(index), (int)session.getAttribute("Invoice_id"));
+            shoppingCart.removeLineItem(index);
+            session.setAttribute("ShoppingCart", shoppingCart);
+            response.sendRedirect("shop.jsp");
+        }
     }
 
     /**

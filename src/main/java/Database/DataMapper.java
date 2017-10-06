@@ -181,6 +181,20 @@ public class DataMapper {
         }
     
     }
+    
+    public void removeProduct(LineItems lineItems, int Invoice_id) {
+        try {
+            String sql = "DELETE FROM Product WHERE Product_name = ? AND Invoice_id = ?";
+            PreparedStatement userPstmt = conn.getConnection().prepareStatement(sql);
+            userPstmt.setString(1, lineItems.getCupcake().getToppingName()+"-"+lineItems.getCupcake().getBottomName());
+            userPstmt.setInt(2, Invoice_id);
+            userPstmt.executeUpdate();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    
+    }
+    
     /**
      * If there is an open invoice the customer gets it otherwise it will create a new one.
      * @param user

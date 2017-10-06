@@ -15,6 +15,11 @@ public class ShoppingCart {
     public List<LineItems> getLineItems() {
         return lineItems;
     }
+    
+    public LineItems getLineItem(int i)
+    {
+        return lineItems.get(i);
+    }
 
     /**
      * Adds an item to the Line Items/Shopping Cart.
@@ -50,6 +55,11 @@ public class ShoppingCart {
      */
     public void emptyCart(){
         lineItems.clear();
+    }
+    
+    public void removeLineItem(int i)
+    {
+        lineItems.remove(i);
     }
 
 }

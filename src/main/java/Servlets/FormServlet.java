@@ -54,6 +54,12 @@ public class FormServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
+        if(request.getParameter("logout").equals("1"))
+        {
+            HttpSession session = request.getSession();
+            session.invalidate();
+            response.sendRedirect("login.jsp");
+        }
     }
 
     /**

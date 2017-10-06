@@ -1,86 +1,73 @@
 * {
   margin: 0;
-  padding: 0;
-}
+  padding: 0; }
+  * body {
+    font-family: 'ariel', sans-serif !important; }
+    * body #wrapper {
+      width: 1200px;
+      margin: 0 auto; }
+      * body #wrapper nav {
+        width: 100%;
+        overflow: hidden;
+        background-color: #4E2E28;
+        height: 62px; }
+        * body #wrapper nav ul {
+          width: 946px;
+          float: left;
+          border: 2px solid #301900; }
+          * body #wrapper nav ul a {
+            color: #fffdd0; }
+            * body #wrapper nav ul a li {
+              list-style-type: none;
+              width: 236.6px;
+              height: 58px;
+              float: left;
+              padding-top: 18px;
+              text-align: center;
+              border-right: 2px solid #301900;
+              font-size: 18px; }
+            * body #wrapper nav ul a img {
+              height: 58px;
+              float: left; }
+            * body #wrapper nav ul a li:hover {
+              background-color: #9a6b4b;
+              cursor: pointer;
+              text-decoration: underline; }
+            * body #wrapper nav ul a:nth-child(2) li {
+              border-left: 2px solid #301900; }
+          * body #wrapper nav ul .nava {
+            float: right; }
+            * body #wrapper nav ul .nava li {
+              border: none;
+              font-size: 14px;
+              width: 90px;
+              text-align: left; }
+            * body #wrapper nav ul .nava li:hover {
+              cursor: pointer;
+              text-decoration: underline;
+              background-color: inherit; }
+        * body #wrapper nav #userinfo {
+          width: 250px;
+          float: left;
+          font-size: 14px;
+          padding-top: 10px; }
+          * body #wrapper nav #userinfo p {
+            text-align: center;
+            color: #fffdd0; }
+      * body #wrapper h1 {
+        text-align: center; }
+      * body #wrapper #loginForm, * body #wrapper #registrationForm {
+        width: 720px;
+        margin: 0 auto;
+        padding: 40px; }
+        * body #wrapper #loginForm .error, * body #wrapper #registrationForm .error {
+          text-align: center;
+          color: #f00; }
+        * body #wrapper #loginForm input, * body #wrapper #registrationForm input {
+          display: block;
+          margin: 0 auto;
+          width: 100%;
+          height: 30px;
+          text-align: center; }
 
-body{
-	background-color: #4E2E28;
-}
-
-#registration nav ul a:nth-child(3) li{
-	text-decoration: underline;
-}
-
-#login nav ul a:nth-child(2) li{
-	text-decoration: underline;
-}
-
-nav{
-	width: 100%;
-}
-
-nav ul{
-	width: 100%;
-	overflow: hidden;
-	margin-bottom: 20px;
-	border: 2px solid #301900;
-	background: #9a6b4b;
-}
-
-nav ul a li{
-	list-style-type: none;
-	width: 236.6px;
-	height: 40px;
-	float: left;
-	padding-top: 18px;
-	text-align: center;
-	border-right: 2px solid #301900;
-	font-size: 18px;
-}
-/*
-nav ul a:nth-child(3) li
-{
-	border-left: 0;
-}*/
-
-nav ul a:nth-child(2) li
-{
-	border-left: 2px solid #301900;
-}
-
-nav ul a li:hover{
-	background-color: #9a6b4b;
-	cursor: pointer;
-	text-decoration: underline;
-}
-
-nav ul a{
-	color: #fffdd0;
-}
-
-nav ul a img{
-	height: 58px;
-	float: left;
-}
-
-table{
-	width: 720px;
-	margin: 0 auto;
-}
-
-table tr td{
-	width: 180px
-}
-
-table tr th{
-	width: 180px;
-	text-align: center;
-}
-
-tbody tr:nth-child(odd) {
-   background-color: #9a6b4b;
-}
-
-tbody tr:nth-child(even) {
-   background-color: #fffdd0;
-}
+/*# sourceMappingURL=main.css.map */

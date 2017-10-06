@@ -17,82 +17,90 @@
     List<Topping> toppingList = (List<Topping>) session.getAttribute("ToppingList");
     List<LineItems> lineItems;
     float totalPrice = 0;
-    User user = (User)session.getAttribute("user");
+    User user = (User) session.getAttribute("user");
     float balance = user.getBalance();
-    if(session.getAttribute("ShoppingCart") != null){
-        ShoppingCart shoppingCart = (ShoppingCart)session.getAttribute("ShoppingCart");
+
+    if (session.getAttribute("ShoppingCart") != null) {
+        ShoppingCart shoppingCart = (ShoppingCart) session.getAttribute("ShoppingCart");
         lineItems = shoppingCart.getLineItems();
         totalPrice = shoppingCart.getTotalPrice();
+    } else {
+        lineItems = new ArrayList();
     }
-    else{
-    lineItems = new ArrayList();
-    
-    }
-    
+
 %>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Shop</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <link rel="stylesheet" href="CSS/main.css">
-        <link rel="stylesheet" href="CSS/form.css">
     </head>
     <body>
-        <jsp:include page="includes/menu.jsp" />
-        <h1>Shop</h1>
-        <h1><%= user.getUsername()+"'s balance " + balance +" Dk"%></h1>
-        <div id="bg">
-            <form class="form" action="ProductControlServlet" method="POST">
-                <select name="Topping" class="textbox">
-                    <%for (int i = 0; i < toppingList.size(); i++) {%>
-                    <option value="<%=i%>"><%=toppingList.get(i).getName()%></option>
-                    <%}%>
-                </select>
-                <select name="Bottom" class="textbox">
-                    <%for (int i = 0; i < bottomList.size(); i++) {%>
-                    <option value="<%=i%>"><%=bottomList.get(i).getName()%></option>
-                    <%}%>
-                </select>
-                <input class="textbox" type="input" name="qty" placeholder="Quantity" required/>
-                <input class="textbox" type="submit" name="submit" value="Add Cupcake"/>
-            </form>
+        <div id="wrapper">
+            <jsp:include page="includes/menu.jsp" />    
+            <h1>Shop</h1>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <h3>add cupcake</h3>
+                        <form action="ProductControlServlet" method="POST">
+                            <div class="form-group">
+                                <label for="exampleFormControlSelect1">Topping</label>
+                                <select name="Topping" class="form-control" id="exampleFormControlSelect1">
+                                    <%for (int i = 0; i < toppingList.size(); i++) {%>
+                                    <option value="<%=i%>"><%=toppingList.get(i).getName()%>: <%=toppingList.get(i).getPrice()%> dkk</option>
+                                    <%}%>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleFormControlSelect1">Bottom</label>
+                                <select name="Bottom" class="form-control" id="exampleFormControlSelect1">
+                                    <%for (int i = 0; i < bottomList.size(); i++) {%>
+                                    <option value="<%=i%>"><%=bottomList.get(i).getName()%>: <%=bottomList.get(i).getPrice()%> dkk</option>
+                                    <%}%>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleFormControlInput1">Quantity</label>
+                                <input type="number" name="qty" class="form-control" id="exampleFormControlInput1" placeholder="0">
+                            </div>
+                            <button type="submit" name="submit" class="btn btn-primary" value="Add Cupcake">Add cupcake to shopping cart</button>
+                        </form>
+                    </div>
+                    <div class="col-sm-6">
+                        <h3>Shopping cart</h3>
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Quantity</th>
+                                    <th>Price</th>
+                                    <th>Remove</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <%for (int i = 0; i < lineItems.size(); i++) {%>
+                                <tr>
+                                    <td><%=lineItems.get(i).getCupcake().getToppingName()%> <%=lineItems.get(i).getCupcake().getBottomName()%></td>
+                                    <td><%=lineItems.get(i).getQty()%></td>
+                                    <td><%=lineItems.get(i).getCupcake().getTotalPrice() * lineItems.get(i).getQty()%> dkk</td>
+                                    <td><a href="ProductControlServlet?index=<%=i%>">x</a></td>
+                                </tr>
+                                <%}%>
+                            </tbody>
+                        </table>
+                        <p>Total price: <%=totalPrice%> dkk</p>
+                        <form action="ProductControlServlet" method="POST">
+                            <button type="submit" name="submit" class="btn btn-primary" value="Checkout">Checkout</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
-            
-        <table class="fixed_headers">
-            <thead>
-                
-                <tr>
-                    <th>Name</th>
-                    <th>Quantity</th>
-                    <th>Price</th>
-                    <th>Remove</th>
-                </tr>
-                
-            </thead>
-            <tbody>
-                <%for(int i = 0; i < lineItems.size(); i++){%>
-                <tr>
-                    <td><%=lineItems.get(i).getCupcake().getName()%></td>
-                    <td><%=lineItems.get(i).getQty()%></td>
-                    <td><%=lineItems.get(i).getCupcake().getTotalPrice() * lineItems.get(i).getQty()%></td>
-                    <td><a href="ProductControlServlet?index=<%=i%>">x</a></td>
-                </tr>
-                <%}%>
-            </tbody>
-        </table>
-            <p>Total price: <%=totalPrice%></p>
-            <form action="ProductControlServlet" method="POST">
-                <input type="submit" value="Checkout" name="submit" />
-                
-            </form>
-            
-            <%
-                
-                if(user.getRole().equals("Admin")){
-            %>
-            <a href="adminPage.jsp">Admin page</a>
-            <%}%>
-            
-    </body>
+    </div>
+</body>
 </html>
