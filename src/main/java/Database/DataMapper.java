@@ -19,8 +19,8 @@ import java.util.logging.Logger;
 import javax.servlet.http.HttpSession;
 
 /**
- * @author Mads Voss
  * Handles all traffic to the database.
+ * @author Mads Voss
  */
 public class DataMapper {
 

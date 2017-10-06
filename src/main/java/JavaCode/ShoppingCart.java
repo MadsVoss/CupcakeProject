@@ -40,7 +40,7 @@ public class ShoppingCart {
     }
     
     /**
-     * Returnss the total price of the Line Items/Shopping cart.
+     * Returns the total price of the Line Items/Shopping cart.
      * @return 
      */
     public float getTotalPrice(){
