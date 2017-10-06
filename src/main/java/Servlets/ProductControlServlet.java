@@ -93,7 +93,6 @@ public class ProductControlServlet extends HttpServlet {
         
         
         switch (request.getParameter("submit")) {
-            // This case handles the checkout, if your purchase exceeds the funds of your balance it will refresh the site. If you have enough funds it then proceeds to the confirmation site.
             case "Checkout":
                 if(user.getBalance() < shoppingCart.getTotalPrice()){
                     dataMapper.deleteInvoicedProducts((int)session.getAttribute("Invoice_id"));
@@ -107,7 +106,6 @@ public class ProductControlServlet extends HttpServlet {
                 }
                 break;
                 
-            // 
             case "Add Cupcake":
                 
                 int Invoice_id = (int)session.getAttribute("Invoice_id");
