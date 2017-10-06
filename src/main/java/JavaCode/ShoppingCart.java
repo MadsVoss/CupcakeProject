@@ -17,7 +17,7 @@ public class ShoppingCart {
     }
 
     /**
-     * 
+     * Adds an item to the Line Items/Shopping Cart.
      * @param lineItem 
      */
     public void addLineItem(LineItems lineItem) {
@@ -34,6 +34,10 @@ public class ShoppingCart {
         }
     }
     
+    /**
+     * Returnss the total price of the Line Items/Shopping cart.
+     * @return 
+     */
     public float getTotalPrice(){
         float totalPrice = 0;
         for(int i = 0; i < lineItems.size(); i++){
@@ -41,6 +45,9 @@ public class ShoppingCart {
         }
         return totalPrice;
     }
+    /**
+     * Clears the Line Items/Shopping Cart.
+     */
     public void emptyCart(){
         lineItems.clear();
     }

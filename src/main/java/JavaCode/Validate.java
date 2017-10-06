@@ -9,8 +9,8 @@ import Database.DataMapper;
 import Database.User;
 
 /**
- * @author Mads Voss
  * Validates the form input.
+ * @author Mads Voss
  */
 public class Validate {
     public boolean ValidateLogin(String username, String password) {

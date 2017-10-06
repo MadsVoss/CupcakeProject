@@ -23,8 +23,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- * @author ezl
  * Handles all requests from the shop.
+ * @author ezl
  */
 public class ProductControlServlet extends HttpServlet {
 
@@ -79,8 +79,10 @@ public class ProductControlServlet extends HttpServlet {
         } else {
             shoppingCart = (ShoppingCart) session.getAttribute("ShoppingCart");
         }
-
+        
+        
         switch (request.getParameter("submit")) {
+            // This case handles the checkout, if your purchase exceeds the funds of your balance it will refresh the site. If you have enough funds it then proceeds to the confirmation site.
             case "Checkout":
                 if(user.getBalance() < shoppingCart.getTotalPrice()){
                     dataMapper.deleteInvoicedProducts((int)session.getAttribute("Invoice_id"));
@@ -93,7 +95,8 @@ public class ProductControlServlet extends HttpServlet {
                 response.sendRedirect("confirmation.jsp");
                 }
                 break;
-
+                
+            // 
             case "Add Cupcake":
                 
                 int Invoice_id = (int)session.getAttribute("Invoice_id");
