@@ -108,6 +108,8 @@ public class ProductControlServlet extends HttpServlet {
                     session.setAttribute("ShoppingCart", shoppingCart);
                 session.removeAttribute("Invoice_id");
                 session.setAttribute("Invoice_id", dataMapper.checkInvoice(dataMapper.getUser(user.getUsername())));
+                session.removeAttribute("user");
+                session.setAttribute("user", dataMapper.getUser(user.getUsername()));
                 response.sendRedirect("confirmation.jsp?checkOutInvoice="+checkOutInvoice);
                 }
                 break;

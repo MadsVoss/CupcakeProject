@@ -34,7 +34,7 @@ public class ODetails {
 
     @Override
     public String toString() {
-        return "ODetails{" + "Invoiceid=" + Invoiceid + ", Userid=" + Userid + ", CurrentStatus=" + CurrentStatus + '}';
+        return "Invoiceid=" + Invoiceid + ", Userid=" + Userid + ", CurrentStatus=" + CurrentStatus;
     }
     
     
