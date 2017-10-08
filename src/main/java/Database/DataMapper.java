@@ -173,8 +173,12 @@ public class DataMapper {
     public void addProduct(LineItems lineItems, int Invoice_id) {
         
         try {
-            String sql = "insert into Product set Product_name = '"+lineItems.getCupcake().getName()+"', Product_quantity = "+lineItems.getQty()+", Product_price = "+lineItems.lineItemsPrice()+", Invoice_id = "+Invoice_id+";";
+            String sql = "insert into Product set Product_name = ?, Product_quantity = ?, Product_price = ?, Invoice_id = ?;";
             PreparedStatement userPstmt = conn.getConnection().prepareStatement(sql);
+            userPstmt.setString(1, lineItems.getCupcake().getName());
+            userPstmt.setInt(2, lineItems.getQty());
+            userPstmt.setFloat(3, lineItems.lineItemsPrice());
+            userPstmt.setInt(4, Invoice_id);
             userPstmt.executeUpdate();
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -212,9 +216,9 @@ public class DataMapper {
                 int Invoiceid = rs.getInt("Invoice_id");
                 return Invoiceid;
             } else{
-                sql = "insert into oDetails set oDate='"+java.time.LocalDate.now()+"', User_id = '"+user.getId()+"', CurrentStatus = 'Open';";
+                sql = "insert into oDetails set oDate='"+java.time.LocalDate.now()+"', User_id = ?, CurrentStatus = 'Open';";
             PreparedStatement userPstmt = conn.getConnection().prepareStatement(sql);
-            
+            userPstmt.setInt(1, user.getId());
             userPstmt.executeUpdate();
             return checkInvoice(user);
             }
@@ -239,8 +243,9 @@ public class DataMapper {
      */
     private void closeInvoice(User user){
         try {
-            String sql = "update oDetails set CurrentStatus = 'Closed' where User_id = "+user.getId()+";";
+            String sql = "update oDetails set CurrentStatus = 'Closed' where User_id = ?;";
             PreparedStatement userPstmt = conn.getConnection().prepareStatement(sql);
+            userPstmt.setInt(1, user.getId());
             userPstmt.executeUpdate();
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -255,8 +260,10 @@ public class DataMapper {
     public void makePurchase(User user, float totalPrice) {
         try {
             float newBalance = user.getBalance() - totalPrice;
-            String sql = "update User set User_balance = "+newBalance+" where User_id = "+user.getId()+";";
+            String sql = "update User set User_balance = ? where User_id = ?;";
             PreparedStatement userPstmt = conn.getConnection().prepareStatement(sql);
+            userPstmt.setFloat(1, newBalance);
+            userPstmt.setInt(2, user.getId());
             userPstmt.executeUpdate();
             closeInvoice(user);
         } catch (SQLException ex) {
@@ -302,8 +309,9 @@ public class DataMapper {
      */
     public void deleteInvoicedProducts(int Invoice_id){
         try {
-            String sql = "delete from Product where Invoice_id = "+Invoice_id+";";
+            String sql = "delete from Product where Invoice_id = ?;";
             PreparedStatement userPstmt = conn.getConnection().prepareStatement(sql);
+            userPstmt.setInt(1, Invoice_id);
             userPstmt.executeUpdate();
 //            sql = "delete from oDetails where Invoice_id = "+Invoice_id+";";
 //            userPstmt = conn.getConnection().prepareStatement(sql);
